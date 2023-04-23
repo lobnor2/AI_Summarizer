@@ -1,10 +1,20 @@
 import "./App.css";
+import Hero from "./components/Hero";
+import Demo from "./components/Demo";
+
+import "./App.css";
 
 function App() {
   return (
-    <>
-      <h1>hellow world</h1>
-    </>
+    <main>
+      <div className="main">
+        <div className="gradient" />
+      </div>
+      <div className="app">
+        <Hero />
+        <Demo />
+      </div>
+    </main>
   );
 }
 
