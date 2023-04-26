@@ -1,15 +1,25 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { copy, linkIcon, loader, tick } from "../assets";
+import { useLazyGetSummaryQuery } from "../services/article";
 
 const Demo = () => {
   const [article, setArticle] = useState({
     url: "",
     summary: "",
   });
+
+  //RTK lazy query
+  const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("submitted");
+    const { data } = await getSummary({ articleUrl: article.url });
+    console.log("hello");
+    console.log(data);
+    if (data?.summary) {
+      const newArticle = { ...article, summary: data.summary };
+      setArticle(newArticle);
+    }
   };
   return (
     <section className="mt-16 w-full max-w-xl">
